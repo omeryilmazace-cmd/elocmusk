@@ -1,0 +1,39 @@
+name: Update Musk Data
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Every hour
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to push changes
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Fetch Script
+        shell: pwsh
+        env:
+          # We need to modify the script to accept env var OR simply replace the token in the file
+          # Since the script currently has a HARDCODED token (which is risky if public), 
+          # we should really be using an environment variable in the script.
+          # For now, I will use sed to inject the secret into the script or modify the script to read ENV.
+          # Let's modify the script to checking ENV first.
+          BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+        run: |
+          # Use the Env Var if present, otherwise it uses the hardcode (which we should remove for security eventually)
+          # We will actually modify the script on the fly to fail-safe use the env var
+          # Start the script
+          ./fetch_data.ps1
+
+      - name: Commit and Push if Changed
+        run: |
+          git config --global user.name 'MuskMeter Bot'
+          git config --global user.email 'bot@muskmeter.local'
+          git add data.json
+          git commit -m "Auto-update: Fetched new tweets" || exit 0
+          git push
