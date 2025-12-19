@@ -8,7 +8,7 @@ try {
     }
     
     # Hardcoded URL - no variables
-    $Url = "https://api.twitter.com/2/users/44196397/tweets?max_results=100&tweet.fields=created_at,public_metrics,referenced_tweets"
+    $Url = "https://api.twitter.com/2/users/44196397/tweets?max_results=100&tweet.fields=created_at,public_metrics,referenced_tweets&exclude=replies"
     
     Write-Host "Requesting: $Url" -ForegroundColor Cyan
     
