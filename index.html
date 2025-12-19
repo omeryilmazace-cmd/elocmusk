@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuskMeter Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-section">
+                <!-- Simple Robot Icon SVG -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#eaeaea" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="#eaeaea" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="#eaeaea" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <div class="logo-text">
+                    <h1>MuskMeter <span class="beta-tag">BETA</span></h1>
+                    <span>Minute-by-minute Musk metrics</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-item">
+                <span class="stat-value" id="total-tweets">--</span>
+                <span class="stat-label">Weekly Total</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="avg-tweets">--</span>
+                <span class="stat-label">Daily Average</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">363</span>
+                <span class="stat-label">Avg Pace Projection</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">$ 8,379,138</span>
+                <span class="stat-label">Volume</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="calendar-wrapper">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <span class="chart-title">Hourly Activity (Shown in Turkey Time UTC+3) - Live API Data</span>
+                    </div>
+
+                    <div id="week-header" class="week-header">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div id="calendar-grid" class="calendar-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel (Score) -->
+            <div class="sidebar">
+                <div class="score-card">
+                    <h3>Tweet Activity Score</h3>
+                    <div style="height: 20px;"></div>
+
+                    <div class="score-circle">
+                        <div class="score-inner">
+                            <span class="score-number">1</span>
+                            <span class="score-text">Quiet</span>
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <div class="legend-item"><span class="dot" style="background: var(--activity-low)"></span> Quiet
+                            (1-25)</div>
+                        <div class="legend-item"><span class="dot" style="background: var(--activity-med)"></span>
+                            Normal (26-50)</div>
+                        <div class="legend-item"><span class="dot" style="background: var(--activity-high)"></span>
+                            Active (51-75)</div>
+                        <div class="legend-item"><span class="dot" style="background: var(--activity-spam)"></span>
+                            Spamming (76-100)</div>
+                    </div>
+
+                    <p style="margin-top: 20px; font-size: 10px; color: #555;">*Based on last 3 hour average</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
